@@ -27,7 +27,7 @@
 </main><footer><span data-ja="入力内容は外部に送信されません。再読み込みすると作業内容は消えます。" data-en="Your list stays on this device. Reloading clears your work."></span><span data-ja="保存するのは言語とテーマの設定だけです。" data-en="Only language and theme preferences are saved."></span></footer>
 <script>(function (root) {
   const catalog = [
-    { id: 'paint', en: 'Color Can', ja: 'カラー缶', labels: ['メインカラー', 'サブカラー', 'パール', 'ホイール', '内装', 'ダッシュボード', 'Primary color', 'Secondary color', 'Pearlescent color', 'Pearl', 'Wheel rim color', 'Wheel color', 'Interior color', 'Dashboard', 'Dashboard color'], note: 'Used for paint colors: primary, secondary, pearlescent, wheel rim, interior and dashboard. Dashboard is counted here, not under Interior Parts.' },
+    { id: 'paint', en: 'Color Can', ja: 'カラー缶', labels: ['メインカラー', 'サブカラー', 'パール', 'ホイール', '内装', 'Primary color', 'Secondary color', 'Pearlescent color', 'Pearl', 'Wheel rim color', 'Wheel color', 'Interior color', 'Dashboard color'], note: 'Used for paint colors: primary, secondary, pearlescent, wheel rim and interior.' },
     { id: 'hood', en: 'Hood', ja: 'ボンネット', labels: ['フード', 'ボンネット', 'Hood', 'Bonnet'] },
     { id: 'roof', en: 'Roof', ja: 'ルーフ', labels: ['ルーフ', 'Roof'] },
     { id: 'spoiler', en: 'Spoiler', ja: 'スポイラー', labels: ['スポイラー', 'Spoiler'] },
@@ -38,7 +38,7 @@
     { id: 'livery', en: 'Livery Roll', ja: 'リバリーロール', labels: ['ラッピング', 'Wrap', 'Livery'] },
     { id: 'smoke', en: 'Tire Smoke Color', ja: '', labels: ['タイヤスモーク', 'タイヤスモークカラー', 'Tire smoke', 'Tire smoke color'], note: 'Changes tire smoke color; RGB adjustment supported. Inventory caption is truncated in the reference. Export labels are descriptive aliases.' },
     { id: 'cage', en: 'Roll Cage', ja: 'ロールケージ', labels: ['ロールケージ', 'Roll cage'] },
-    { id: 'interior', en: 'Interior Parts', ja: '内装パーツ', labels: ['ドアスピーカー', 'ステアリングホイール', 'スパーク', 'ダイヤル', 'オーナメント', 'Door speakers', 'Steering wheel', 'Spark', 'Dials', 'Ornaments'], note: '“スパーク” is transcribed literally; its meaning is uncertain. “スピーカー” is only a suggested match.' },
+    { id: 'interior', en: 'Interior Parts', ja: '内装パーツ', labels: ['ドアスピーカー', 'ステアリングホイール', 'スパーク', 'ダイヤル', 'ダッシュボード', 'オーナメント', 'Door speakers', 'Steering wheel', 'Spark', 'Dials', 'Dashboard', 'Ornaments'], note: '“スパーク” is transcribed literally; its meaning is uncertain. “スピーカー” is only a suggested match.' },
     { id: 'exterior', en: 'Exterior Parts', ja: '外装パーツ', labels: ['トリムA', 'トリムB', 'ストラット', 'フィルター', 'ブロック', 'アーチカバー', 'アンテナ', 'トランク', '燃料タンク', 'Trim A', 'Trim B', 'Struts', 'Filter', 'Block', 'Arch covers', 'Antenna', 'Trunk', 'Fuel tank'] },
     { id: 'plates', en: 'Custom Plates', ja: 'カスタムプレート', labels: ['ナンバープレート', 'バニティプレート', 'プレートホルダー', 'License plate', 'Vanity plate', 'Plate holder'] },
     { id: 'horn', en: 'Custom Horn', ja: 'カスタムホーン', labels: ['クラクション', 'Horn'], note: 'Changes the horn. The linked horn list is not included in the image.' },
@@ -124,7 +124,7 @@ const warningsJa = {
   'This entry has an empty option name. Check the export before applying it.': '設定名が空欄です。適用する前に元のカスタム一覧を確認してください。'
 };
 const notesJa = {
-  paint: 'メインカラー・サブカラー・パール・ホイール・内装・ダッシュボードの色変更に使用します。ダッシュボードは内装パーツではなく、カラー缶として数えます。',
+  paint: 'メインカラー・サブカラー・パール・ホイール・内装の色変更に使用します。',
   smoke: 'タイヤから出る煙の色を変更。RGB調整に対応。資料のアイテム名は途中で切れているため、用途に基づく仮称と別名を使用しています。',
   interior: '「スパーク」は資料の表記をそのまま転記しており、意味は未確認です。「スピーカー」は候補として表示します。',
   horn: 'クラクションの変更用。資料内のクラクション一覧リンクの内容は含まれていません。',
