@@ -27,7 +27,7 @@
 </main><footer><span data-ja="入力内容は外部に送信されません。再読み込みすると作業内容は消えます。" data-en="Your list stays on this device. Reloading clears your work."></span><span data-ja="保存するのは言語とテーマの設定だけです。" data-en="Only language and theme preferences are saved."></span></footer>
 <script>(function (root) {
   const catalog = [
-    { id: 'paint', en: 'Color Can', ja: 'カラー缶', labels: ['メインカラー', 'サブカラー', 'パール', 'ホイール', '内装', 'Primary color', 'Secondary color', 'Pearlescent color', 'Pearl', 'Wheel rim color', 'Wheel color', 'Interior color', 'Dashboard color'], note: 'Used for paint colors: primary, secondary, pearlescent, wheel rim and interior.' },
+    { id: 'paint', en: 'Color Can', ja: 'カラー缶', labels: ['メインカラー', 'サブカラー', 'パール', 'ホイール', '内装', 'ダッシュボードカラー', 'Primary color', 'Secondary color', 'Pearlescent color', 'Pearl', 'Wheel rim color', 'Wheel color', 'Interior color', 'Dashboard color'], note: 'Used for paint colors: primary, secondary, pearlescent, wheel rim, interior and dashboard color. A Dashboard entry with a color value (no option number) is counted here; a numbered Dashboard entry is an Interior Part.' },
     { id: 'hood', en: 'Hood', ja: 'ボンネット', labels: ['フード', 'ボンネット', 'Hood', 'Bonnet'] },
     { id: 'roof', en: 'Roof', ja: 'ルーフ', labels: ['ルーフ', 'Roof'] },
     { id: 'spoiler', en: 'Spoiler', ja: 'スポイラー', labels: ['スポイラー', 'Spoiler'] },
@@ -72,6 +72,8 @@
       const value = match[2].trim();
       const numbered = value.match(/^(-?\d+)\s*\.\s*([\s\S]*)$/);
       let itemId = aliases.get(normalize(label)) || null;
+      // Dashboard is both a part (numbered option) and a paint color (color name only).
+      if (['ダッシュボード', 'dashboard'].includes(normalize(label)) && !numbered) itemId = 'paint';
       const warnings = [];
       let suggestion = null;
       if (['スピーカー', 'speaker', 'speakers'].includes(normalize(label))) {
@@ -124,7 +126,7 @@ const warningsJa = {
   'This entry has an empty option name. Check the export before applying it.': '設定名が空欄です。適用する前に元のカスタム一覧を確認してください。'
 };
 const notesJa = {
-  paint: 'メインカラー・サブカラー・パール・ホイール・内装の色変更に使用します。',
+  paint: 'メインカラー・サブカラー・パール・ホイール・内装・ダッシュボードの色変更に使用します。ダッシュボードは、設定値が色名（番号なし）ならカラー缶、番号付きの選択肢なら内装パーツとして数えます。',
   smoke: 'タイヤから出る煙の色を変更。RGB調整に対応。資料のアイテム名は途中で切れているため、用途に基づく仮称と別名を使用しています。',
   interior: '「スパーク」は資料の表記をそのまま転記しており、意味は未確認です。「スピーカー」は候補として表示します。',
   horn: 'クラクションの変更用。資料内のクラクション一覧リンクの内容は含まれていません。',
