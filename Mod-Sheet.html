@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ja" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="FiveMのカスタム一覧から必要なアイテム数と作業リストを作成。日本語・English対応。">
+<title>Mod Sheet — カスタム準備ノート</title>
+<style>:root { color-scheme: dark; --bg:#191e24; --surface:#242c35; --raised:#2b3540; --ink:#ecf0f4; --muted:#b0bdca; --line:#445260; --blue:#9bd5ff; --pink:#f2afd6; --value:#433044; --amber:#ffd49c; --notice:#403326; --button:#b9ddf5; --button-ink:#192b3b; }
+:root[data-theme=light] { color-scheme:light; --bg:#e8eef3; --surface:#fff; --raised:#f3f6f9; --ink:#263544; --muted:#526676; --line:#b6c5d0; --blue:#145a8d; --pink:#86365f; --value:#f8eaf2; --amber:#704311; --notice:#fff1da; --button:#205e8e; --button-ink:#fff; }
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:'Yu Gothic UI','Hiragino Kaku Gothic ProN','Meiryo',sans-serif;font-size:15px;line-height:1.65} button,textarea,select{font:inherit} button,summary,select,label:has(input){cursor:pointer} button,select{border:1px solid var(--line);border-radius:6px;padding:9px 14px;background:var(--surface);color:var(--ink)} button:hover{background:var(--raised)} button:disabled{opacity:.5;cursor:default} :focus-visible{outline:3px solid var(--amber);outline-offset:3px} button.primary{background:var(--button);border-color:var(--button);color:var(--button-ink);font-weight:700} button.primary:hover{filter:brightness(1.08)} button.text-button{border:0;background:transparent;color:var(--blue);padding:4px 0;text-decoration:underline;text-underline-offset:4px} h1,h2,p{margin:0} h1{font-size:clamp(24px,3vw,36px);line-height:1.4;letter-spacing:.02em} h2{font-size:18px;line-height:1.5} p{max-width:78ch} header{max-width:1400px;margin:auto;padding:20px 36px;display:flex;justify-content:space-between;gap:16px;align-items:center;border-bottom:1px solid var(--line)} .brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-size:23px;font-weight:700;text-decoration:none;letter-spacing:-.5px} .logo{display:grid;place-items:center;width:34px;height:34px;background:var(--button);color:var(--button-ink);border-radius:5px;font-size:25px} .preferences{display:flex;gap:8px;align-items:center;font-size:13px} #theme[aria-pressed=true]{border-color:var(--blue);color:var(--blue)} main{max-width:1328px;margin:auto;padding:0 32px}.intro{padding:32px 0 26px;display:flex;justify-content:space-between;gap:20px;align-items:center}.intro p{color:var(--muted);margin-top:8px}.offline{color:var(--muted);font-size:12px;white-space:nowrap}.offline::before{content:'●';color:var(--blue);font-size:9px;margin-right:8px}.input-panel{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:20px 22px}.section-head{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:12px} textarea{display:block;width:100%;min-height:100px;resize:vertical;padding:13px 15px;border:1px solid var(--line);border-radius:5px;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.85} textarea::placeholder{color:var(--muted)} .input-actions{margin-top:15px;display:flex;justify-content:space-between;gap:20px;align-items:center}.input-actions p{font-size:12px;color:var(--muted)}.input-actions>div{display:flex;gap:8px;flex-shrink:0}#source{min-height:calc(3 * 1.85em + 28px);overflow-y:hidden;resize:none;white-space:pre-wrap;overflow-wrap:anywhere}#status{font-size:13px;color:var(--muted);min-height:22px;margin:10px 0}#empty{text-align:center;padding:44px 15px 55px}#empty p{margin:8px auto;color:var(--muted);font-size:14px}.empty-mark{display:inline-grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;margin-bottom:12px;color:var(--blue)}.results-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:24px 0 22px}.results-head h2{font-size:23px}#summary{font-size:13px;color:var(--muted);margin-top:4px}.workspace{display:grid;grid-template-columns:340px minmax(0,1fr);gap:28px;align-items:start}.parts-panel{position:sticky;top:18px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:8px;padding:20px}#total{font-size:21px;color:var(--blue);font-weight:700;white-space:nowrap}.hint{font-size:12px;color:var(--muted)}.part{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}input[type=checkbox]{flex-shrink:0;width:19px;height:19px;margin:0;accent-color:var(--blue);cursor:pointer}.part-name{flex:1;min-width:0}.part-name strong{display:block;font-size:15px}.sub-name{font-size:12px;display:block;color:var(--muted)}.qty{font-weight:700;font-size:25px;color:var(--blue);font-variant-numeric:tabular-nums}#pending{margin-top:18px}.done .part-name,.done .entry-text{text-decoration:line-through;text-decoration-color:var(--muted)}#progress{color:var(--muted);font-size:13px;white-space:nowrap}.legend{display:flex;flex-wrap:wrap;align-items:center;gap:13px;margin-bottom:16px;font-size:12px;color:var(--muted)}.category{color:var(--blue)}.value{color:var(--pink);background:var(--value);padding:2px 5px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}.entry{padding:17px 18px;background:var(--surface);border:1px solid var(--line);border-radius:6px;margin-bottom:9px}.entry-line{display:flex;gap:12px;align-items:baseline}.entry-line input{align-self:flex-start;margin-top:6px}.entry-text{overflow-wrap:anywhere;line-height:1.9}.entry-detail{margin:6px 0 0 31px;font-size:12px;color:var(--muted)}.entry-detail p+p{margin-top:5px}.warning{color:var(--amber);padding-left:10px;border-left:2px solid var(--amber);margin-top:10px!important}.assignment{display:block;margin-top:12px}.assignment select{display:block;max-width:100%;width:330px;margin-top:4px;font-size:13px}.notice{border:1px solid var(--amber);background:var(--notice);color:var(--amber);padding:14px 18px;border-radius:6px;margin-bottom:20px;font-size:13px}.notice pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}.notice p{margin-top:8px}details{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:36px 0 24px}summary{padding:18px 0;font-weight:700;font-size:16px}summary .hint{margin-left:14px;font-weight:400}details>p{margin-bottom:16px}.table-scroll{overflow-x:auto;margin-bottom:20px}table{border-collapse:collapse;width:100%;min-width:680px;font-size:12px;background:var(--surface)}th,td{text-align:left;vertical-align:top;padding:14px;border-bottom:1px solid var(--line)}thead{background:var(--raised)}tbody th{width:21%}td{width:39.5%}#manual-copy{margin:24px 0}#manual-copy p{margin:10px 0}#copy-text{min-height:230px}footer{max-width:1328px;margin:auto;padding:0 32px 24px;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:var(--muted)}[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.guide-panel{min-width:0}.results-head>button{white-space:nowrap;flex-shrink:0}
+@media(max-width:1000px){.workspace{grid-template-columns:290px minmax(0,1fr);gap:18px}.parts-panel{padding:15px}.offline{display:none}.input-actions{align-items:flex-start}.input-actions p{max-width:38ch}}
+@media(max-width:720px){header{padding:16px}.brand{font-size:20px;gap:7px}.logo{width:28px;height:28px;font-size:21px}.preferences{gap:5px;font-size:11px}.preferences button,.preferences select{padding:8px}main{padding:0 16px}.intro{padding:25px 0 20px}.intro p{font-size:13px}.input-panel{padding:16px}.input-panel h2{font-size:16px}.text-button{font-size:12px;white-space:nowrap}.input-actions{flex-direction:column;gap:12px}.input-actions p{max-width:none}.input-actions>div{align-self:flex-end}.workspace{grid-template-columns:1fr;gap:28px}.parts-panel{position:static;padding:18px}.entry{padding:14px 12px}.entry-text{font-size:14px}.results-head h2{font-size:21px}footer{padding:0 16px 24px;flex-direction:column;gap:3px}}
+.parts-panel{padding:12px 14px;top:12px}.parts-panel .section-head{margin-bottom:6px}.parts-panel h2{font-size:15px}#total{font-size:16px}.parts-panel .hint{font-size:11px;line-height:1.45}.part{gap:8px;padding:5px 0;line-height:1.35}.part input[type=checkbox]{width:15px;height:15px}.part-name strong{font-size:12.5px}.part .sub-name{font-size:10.5px;line-height:1.2}.qty{font-size:16px}#pending{margin-top:8px}
+</style>
+</head>
+<body>
+<header><a href="#" class="brand"><span aria-hidden="true" class="logo">▤</span> Mod Sheet</a><div class="preferences"><label><span class="sr-only" data-ja="表示言語" data-en="Language"></span><select id="language"><option value="ja">日本語</option><option value="en">English</option></select></label><button id="theme" class="quiet" type="button" aria-pressed="true" data-ja="ダークモード" data-en="Dark mode"></button></div></header>
+<main>
+<section class="intro"><div><h1 data-ja="カスタムの準備を、ひとまとめに。" data-en="Every part. Ready to fit."></h1><p data-ja="一覧を貼り付けるだけ。必要な数をそろえて、設定をひとつずつ確認。" data-en="Paste your mod list, gather the right quantities, and work through every setting."></p></div><span class="offline" data-ja="オフラインで使えます" data-en="Works offline"></span></section>
+<section class="input-panel" aria-labelledby="input-title"><div class="section-head"><h2 id="input-title" data-ja="カスタム一覧を貼り付け" data-en="Paste your customization list"></h2><button id="sample" class="text-button" data-ja="サンプルを試す" data-en="Try example"></button></div><label class="sr-only" for="source" data-ja="カスタム一覧" data-en="Customization list"></label><textarea id="source" spellcheck="false" placeholder="ルーフ - [7. NULL], フロントバンパー - [4. サブカラー・GTバンパー], リアバンパー - [3. カーボン・リアバンパー]"></textarea><div class="input-actions"><p data-ja="カンマ・改行区切りに対応。元の項目名と設定値はそのまま表示します。" data-en="Commas and line breaks supported. Original labels and option values stay intact."></p><div><button id="clear" class="quiet" data-ja="クリア" data-en="Clear"></button><button id="build" class="primary" data-ja="準備リストを作成" data-en="Build my sheet"></button></div></div></section>
+<p id="status" role="status" aria-live="polite"></p>
+<div id="empty"><span class="empty-mark" aria-hidden="true">✓</span><h2 data-ja="まずは一覧を貼り付けましょう" data-en="Start with your mod list"></h2><p data-ja="必要なアイテム数と、色分けされた作業リストがここに表示されます。" data-en="Your item quantities and color-coded fitting guide will appear here."></p></div>
+<section id="results" hidden><div class="results-head"><div><h2 data-ja="今回のカスタム" data-en="Your mod sheet"></h2><p id="summary"></p></div><button id="copy" class="quiet" data-ja="結果をコピー" data-en="Copy sheet"></button></div><p id="stale" class="notice" hidden data-ja="入力内容が変わりました。「準備リストを作成」で結果を更新してください。" data-en="The input has changed. Build the sheet again to update your results."></p><section id="unread" class="notice" hidden></section><div class="workspace"><aside class="parts-panel"><div class="section-head"><h2 data-ja="準備するアイテム" data-en="Parts to prepare"></h2><span id="total"></span></div><p class="hint" data-ja="カスタム1項目につき1個。必要数をそろえたらチェック。" data-en="One item per customization. Check each part when you have the full quantity."></p><div id="parts"></div><p id="pending" class="hint"></p></aside><section class="guide-panel"><div class="section-head"><h2 data-ja="取り付け・設定リスト" data-en="Fitting guide"></h2><span id="progress"></span></div><p class="legend"><span class="category" data-ja="カスタム項目" data-en="Category"></span><span class="value" data-ja="[設定値]" data-en="[Selected option]"></span><span data-ja="適用したらチェック" data-en="Check off as you apply"></span></p><div id="guide"></div></section></div></section>
+<details id="reference"><summary><span data-ja="アイテム対応表" data-en="Item reference"></span><span class="hint" data-ja="19カテゴリ" data-en="19 categories"></span></summary><p class="hint" data-ja="提供されたサーバーの資料に基づく対応表です。サーバーによって必要アイテムや消費数が異なる場合があります。英語表記などの別名にも対応しています。" data-en="Based on the supplied server reference. Item requirements and consumption may differ by server. English and descriptive aliases are also supported."></p><div class="table-scroll"><table><thead><tr><th data-ja="アイテム" data-en="Inventory item"></th><th data-ja="対応するカスタム項目・別名" data-en="Categories and aliases"></th><th data-ja="補足" data-en="Notes"></th></tr></thead><tbody id="catalog"></tbody></table></div></details>
+<section id="manual-copy" hidden><h2 data-ja="コピー用テキスト" data-en="Text to copy"></h2><p data-ja="自動コピーが使えませんでした。下のテキストを選択してコピーしてください。" data-en="Automatic copying is unavailable. Select and copy the text below."></p><label class="sr-only" for="copy-text" data-ja="コピーする結果" data-en="Sheet text to copy"></label><textarea id="copy-text" readonly></textarea></section>
+</main><footer><span data-ja="入力内容は外部に送信されません。再読み込みすると作業内容は消えます。" data-en="Your list stays on this device. Reloading clears your work."></span><span data-ja="保存するのは言語とテーマの設定だけです。" data-en="Only language and theme preferences are saved."></span></footer>
+<script>(function (root) {
+  const catalog = [
+    { id: 'paint', en: 'Color Can', ja: 'カラー缶', labels: ['メインカラー', 'サブカラー', 'パール', 'ホイール', '内装', 'ダッシュボード', 'Primary color', 'Secondary color', 'Pearlescent color', 'Pearl', 'Wheel rim color', 'Wheel color', 'Interior color', 'Dashboard', 'Dashboard color'], note: 'Used for paint colors: primary, secondary, pearlescent, wheel rim, interior and dashboard. Dashboard is counted here, not under Interior Parts.' },
+    { id: 'hood', en: 'Hood', ja: 'ボンネット', labels: ['フード', 'ボンネット', 'Hood', 'Bonnet'] },
+    { id: 'roof', en: 'Roof', ja: 'ルーフ', labels: ['ルーフ', 'Roof'] },
+    { id: 'spoiler', en: 'Spoiler', ja: 'スポイラー', labels: ['スポイラー', 'Spoiler'] },
+    { id: 'bumpers', en: 'Bumpers', ja: 'バンパー', labels: ['グリル', 'フロントバンパー', 'リアバンパー', 'Grille', 'Front bumper', 'Rear bumper'] },
+    { id: 'skirts', en: 'Skirts', ja: 'スカート', labels: ['スカート', '左フェンダー', '右フェンダー', 'Skirts', 'Skirt', 'Left fender', 'Right fender'] },
+    { id: 'exhaust', en: 'Exhaust', ja: 'マフラー', labels: ['マフラー', 'Exhaust'] },
+    { id: 'seats', en: 'Custom Seats', ja: 'カスタムシート', labels: ['シート', 'Seats', 'Seat'] },
+    { id: 'livery', en: 'Livery Roll', ja: 'リバリーロール', labels: ['ラッピング', 'Wrap', 'Livery'] },
+    { id: 'smoke', en: 'Tire Smoke Color', ja: '', labels: ['タイヤスモーク', 'タイヤスモークカラー', 'Tire smoke', 'Tire smoke color'], note: 'Changes tire smoke color; RGB adjustment supported. Inventory caption is truncated in the reference. Export labels are descriptive aliases.' },
+    { id: 'cage', en: 'Roll Cage', ja: 'ロールケージ', labels: ['ロールケージ', 'Roll cage'] },
+    { id: 'interior', en: 'Interior Parts', ja: '内装パーツ', labels: ['ドアスピーカー', 'ステアリングホイール', 'スパーク', 'ダイヤル', 'オーナメント', 'Door speakers', 'Steering wheel', 'Spark', 'Dials', 'Ornaments'], note: '“スパーク” is transcribed literally; its meaning is uncertain. “スピーカー” is only a suggested match.' },
+    { id: 'exterior', en: 'Exterior Parts', ja: '外装パーツ', labels: ['トリムA', 'トリムB', 'ストラット', 'フィルター', 'ブロック', 'アーチカバー', 'アンテナ', 'トランク', '燃料タンク', 'Trim A', 'Trim B', 'Struts', 'Filter', 'Block', 'Arch covers', 'Antenna', 'Trunk', 'Fuel tank'] },
+    { id: 'plates', en: 'Custom Plates', ja: 'カスタムプレート', labels: ['カスタムプレート', 'バニティプレート', 'プレートホルダー', 'Custom plate', 'Vanity plate', 'Plate holder'] },
+    { id: 'horn', en: 'Custom Horn', ja: 'カスタムホーン', labels: ['クラクション', 'Horn'], note: 'Changes the horn. The linked horn list is not included in the image.' },
+    { id: 'wheels', en: 'Custom Wheels', ja: 'カスタムホイール', labels: ['Wheels', 'Custom wheels', 'カスタムホイール'], note: 'Changes rims, not rim color. The reference mentions slight performance differences and a wheel list; the linked list is unavailable.' },
+    { id: 'neon', en: 'Underglow', ja: 'アンダーネオン', labels: ['アンダーネオン', 'Underglow', 'Neon'], note: 'After installation, use the neon controller inside the vehicle to adjust the color. RGB supported.' },
+    { id: 'headlights', en: 'Xenon Headlights', ja: '', labels: ['ヘッドライト', 'ヘッドライトカラー', 'Headlights', 'Headlight color'], note: 'After installation, use the neon controller inside the vehicle to adjust the color. RGB supported. Inventory caption is truncated; export labels are descriptive aliases.' },
+    { id: 'tint', en: 'Window Tint', ja: 'ウィンドウティント', labels: ['ウィンドウの色合い', 'ウィンドウティント', 'ウィンドウカラー', 'Window tint'], note: 'Changes window tint, also described as window smoke. “ウィンドウの色合い” comes from the supplied export.' }
+  ];
+  const sample = 'ルーフ - [7. NULL ],リアバンパー - [3. カーボン・リアバンパー ],アンテナ - [2. NULL ],ボンネット - [6. レースボンネット(メイン) ],ダッシュボード - [2. NULL ],スカート - [1. メインカラー・スカート ],ロールケージ - [5. ケージ&レースシート ],スポイラー - [3. レース・ウィング ],マフラー - [1. チタンチップ ],フロントバンパー - [4. サブカラー・GTバンパー ],右フェンダー - [2. NULL ],スピーカー - [1. HSW性能アップグレード ],左フェンダー - [3. NULL ],トリムA - [2. NULL ],メインカラー - [ マットフォレストグリーン (マット) ],サブカラー - [ マットダークアース (マット) ],パール - [ サンセットレッド (メタリック) ],ホイール - [ ブラックプリズマティック (カメレオン) ],内装 - [ カベルネレッド (メタリック) ], Wheels - [ クラシック・ファイブ (0) (マッスル) ],ウィンドウの色合い - [ ピュアブラック ]';
+  root.ModCatalog = { catalog, sample };
+  if (typeof module !== 'undefined') module.exports = root.ModCatalog;
+})(globalThis);
+
+(function (root) {
+  const { catalog } = typeof module !== 'undefined' ? require('./catalog.js') : root.ModCatalog;
+  const normalize = value => value.normalize('NFKC').toLowerCase().replace(/\s+/g, '');
+  const aliases = new Map(catalog.flatMap(item => item.labels.map(label => [normalize(label), item.id])));
+  const colors = new Map(Object.entries({ 'メインカラー': 'Primary Color', 'サブカラー': 'Secondary Color', 'パール': 'Pearlescent Color', 'ホイール': 'Wheel Rim Color', '内装': 'Interior Color' }));
+
+  function parse(text) {
+    const entries = [];
+    const unread = [];
+    // Brackets define each value, so commas inside a value are preserved.
+    const pattern = /([^,，;；\r\n\[\]]+?)\s*[-–—]\s*\[([^\[\]]*)\]/gu;
+    let end = 0;
+    const keepUnread = value => { const clean = value.replace(/^[\s,，;；]+|[\s,，;；]+$/g, ''); if (clean) unread.push(clean); };
+    for (const match of text.matchAll(pattern)) {
+      keepUnread(text.slice(end, match.index));
+      end = match.index + match[0].length;
+      const label = match[1].trim();
+      const value = match[2].trim();
+      const numbered = value.match(/^(-?\d+)\s*\.\s*([\s\S]*)$/);
+      let itemId = aliases.get(normalize(label)) || null;
+      const warnings = [];
+      let suggestion = null;
+      if (['スピーカー', 'speaker', 'speakers'].includes(normalize(label))) {
+        suggestion = 'interior';
+        warnings.push('The reference lists Door Speakers under Interior Parts, not this exact category. Confirm the item before counting it.');
+      }
+      if (/HSW/i.test(value) && ['スピーカー', 'speaker', 'speakers', 'ドアスピーカー', 'doorspeakers'].includes(normalize(label))) {
+        suggestion = 'interior';
+        itemId = null;
+        warnings.push('The category says Speaker, but the option names an HSW performance upgrade. Check the original vehicle menu.');
+      }
+      if (normalize(label) === 'スパーク' || normalize(label) === 'spark') warnings.push('“スパーク” appears in the reference, but its meaning is uncertain.');
+      if (!value || (numbered && !numbered[2].trim())) warnings.push('This entry has an empty option name. Check the export before applying it.');
+      entries.push({ label, value, optionNumber: numbered ? numbered[1] : null, optionName: numbered ? numbered[2].trim() : value, itemId, suggestion, warnings, colorName: colors.get(label) || null });
+    }
+    keepUnread(text.slice(end));
+    return { entries, unread };
+  }
+
+  function counts(entries) {
+    const totals = new Map();
+    for (const entry of entries) if (entry.itemId) totals.set(entry.itemId, (totals.get(entry.itemId) || 0) + 1);
+    return catalog.filter(item => totals.has(item.id)).map(item => ({ ...item, quantity: totals.get(item.id) }));
+  }
+  root.ModParser = { parse, counts };
+  if (typeof module !== 'undefined') module.exports = root.ModParser;
+})(globalThis);
+
+const { catalog, sample } = ModCatalog;
+const { parse, counts } = ModParser;
+const $ = id => document.getElementById(id);
+let language = 'ja';
+let theme = 'dark';
+try {
+  if (localStorage.getItem('mod-sheet-share-language') === 'en') language = 'en';
+  if (localStorage.getItem('mod-sheet-share-theme') === 'light') theme = 'light';
+} catch {}
+let sheet = { entries: [], unread: [] };
+let builtText = '';
+let message = ['', ''];
+const gathered = new Set();
+const applied = new Set();
+const t = (ja, en) => language === 'ja' ? ja : en;
+const itemJa = item => item.ja || ({ smoke: 'タイヤスモークカラー', headlights: 'キセノンヘッドライト' })[item.id];
+const itemName = item => t(itemJa(item), item.en);
+const warningsJa = {
+  'The reference lists Door Speakers under Interior Parts, not this exact category. Confirm the item before counting it.': '資料では「ドアスピーカー」が内装パーツに含まれています。「スピーカー」と同じ項目か確認してから、アイテムを指定してください。',
+  'The category says Speaker, but the option names an HSW performance upgrade. Check the original vehicle menu.': '項目名はスピーカーですが、設定値はHSW性能アップグレードです。ゲーム内の車両メニューで確認してください。',
+  '“スパーク” appears in the reference, but its meaning is uncertain.': '「スパーク」は資料に記載されていますが、具体的な内容は未確認です。',
+  'This entry has an empty option name. Check the export before applying it.': '設定名が空欄です。適用する前に元のカスタム一覧を確認してください。'
+};
+const notesJa = {
+  paint: 'メインカラー・サブカラー・パール・ホイール・内装・ダッシュボードの色変更に使用します。ダッシュボードは内装パーツではなく、カラー缶として数えます。',
+  smoke: 'タイヤから出る煙の色を変更。RGB調整に対応。資料のアイテム名は途中で切れているため、用途に基づく仮称と別名を使用しています。',
+  interior: '「スパーク」は資料の表記をそのまま転記しており、意味は未確認です。「スピーカー」は候補として表示します。',
+  horn: 'クラクションの変更用。資料内のクラクション一覧リンクの内容は含まれていません。',
+  wheels: 'リムの種類を変更するアイテムです。リムの色は対象外です。資料によるとホイールごとに多少の性能差があります。リンク先の一覧は未収録です。',
+  neon: '装着後、車内でネオンコントローラーを使用して色を変更します。RGB調整に対応。',
+  headlights: '装着後、車内でネオンコントローラーを使用して色を変更します。RGB調整に対応。資料のアイテム名が途中で切れているため、用途に基づく仮称と別名を使用しています。',
+  tint: 'ウィンドウの色・スモークを変更します。「ウィンドウの色合い」は提供されたカスタム一覧の表記です。'
+};
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+function fitSource() {
+  const box = $('source');
+  box.style.height = 'auto';
+  box.style.height = box.scrollHeight + 2 + 'px';
+}
+function announce(ja, en) { message = [ja, en]; $('status').textContent = t(...message); }
+function preference(key, value) { try { localStorage.setItem('mod-sheet-share-' + key, value); } catch {} }
+function renderTheme() {
+  document.documentElement.dataset.theme = theme;
+  $('theme').setAttribute('aria-pressed', theme === 'dark');
+}
+function renderParts() {
+  const groups = counts(sheet.entries);
+  $('parts').replaceChildren();
+  for (const item of groups) {
+    const row = el('label', 'part');
+    const check = el('input');
+    check.type = 'checkbox';
+    check.checked = gathered.has(item.id);
+    row.classList.toggle('done', check.checked);
+    check.addEventListener('change', () => {
+      check.checked ? gathered.add(item.id) : gathered.delete(item.id);
+      row.classList.toggle('done', check.checked);
+    });
+    const name = el('span', 'part-name');
+    name.append(el('strong', '', itemName(item)));
+    if (language === 'en') name.append(el('span', 'sub-name', itemJa(item)));
+    row.append(check, name, el('span', 'qty', '×' + item.quantity));
+    $('parts').append(row);
+  }
+  const total = groups.reduce((sum, group) => sum + group.quantity, 0);
+  const pending = sheet.entries.filter(entry => !entry.itemId).length;
+  $('total').textContent = t(`${total} 個`, `${total} items`);
+  $('summary').textContent = t(`${sheet.entries.length} 項目 ／ アイテム ${groups.length} 種類 ／ 未指定 ${pending} 項目`, `${sheet.entries.length} customizations / ${groups.length} item types / ${pending} unassigned`);
+  $('pending').textContent = pending ? t(`未指定の${pending}項目は個数に含めていません。作業リストで確認してください。`, `${pending} unassigned entries are excluded from quantities. Review them in the fitting guide.`) : t('すべての項目にアイテムが指定されています。', 'All entries have an assigned item.');
+  if (!groups.length) $('parts').append(el('p', 'hint', t('該当するアイテムがありません。作業リストで内容を確認してください。', 'No items assigned yet. Review the fitting guide.')));
+}
+function updateProgress() { $('progress').textContent = t(`${applied.size} / ${sheet.entries.length} 完了`, `${applied.size} / ${sheet.entries.length} applied`); }
+function renderGuide() {
+  $('guide').replaceChildren();
+  sheet.entries.forEach((entry, index) => {
+    const row = el('article', 'entry');
+    row.classList.toggle('done', applied.has(index));
+    const line = el('label', 'entry-line');
+    const check = el('input');
+    check.type = 'checkbox';
+    check.checked = applied.has(index);
+    check.setAttribute('aria-label', t(`${entry.label}を適用済みにする`, `Mark ${entry.label} as applied`));
+    check.addEventListener('change', () => { check.checked ? applied.add(index) : applied.delete(index); row.classList.toggle('done', check.checked); updateProgress(); });
+    const text = el('span', 'entry-text');
+    text.append(el('strong', 'category', entry.label), document.createTextNode(' — '), el('span', 'value', `[${entry.value}]`));
+    line.append(check, text);
+    const detail = el('div', 'entry-detail');
+    const item = catalog.find(item => item.id === entry.itemId);
+    detail.append(el('p', '', item ? t(`${entry.overridden ? '指定したアイテム' : '必要アイテム'}：${itemName(item)}`, `${entry.overridden ? 'Assigned' : 'Item'}: ${itemName(item)}`) : entry.suggestion ? t('未指定：候補の確認が必要です。', 'Unassigned: suggested match needs confirmation.') : t('未指定：資料に対応アイテムの記載がありません。', `${entry.colorName || 'Unassigned'}: item not specified in the reference.`)));
+    if (entry.optionName.toUpperCase() === 'NULL') detail.append(el('p', '', t(`設定名はNULLです${entry.optionNumber !== null ? `（選択肢 ${entry.optionNumber}）` : ''}。元の表記を保持しています。`, `The option name is NULL${entry.optionNumber !== null ? ` (option ${entry.optionNumber})` : ''}. Kept as supplied.`)));
+    for (const warning of entry.warnings) detail.append(el('p', 'warning', t('要確認：' + warningsJa[warning], 'Review: ' + warning)));
+    if (!entry.itemId || entry.overridden) {
+      const label = el('label', 'assignment', t('アイテムを指定', 'Assign inventory item'));
+      const select = el('select');
+      select.setAttribute('aria-label', t(`${entry.label}のアイテムを指定`, `Assign inventory item for ${entry.label}`));
+      const blank = el('option', '', t('未指定のままにする', 'Leave unassigned'));
+      blank.value = '';
+      select.append(blank);
+      for (const item of catalog) {
+        const option = el('option', '', itemName(item) + (item.id === entry.suggestion ? t('（候補）', ' (suggested)') : ''));
+        option.value = item.id;
+        select.append(option);
+      }
+      select.value = entry.itemId || '';
+      select.addEventListener('change', () => {
+        gathered.delete(entry.itemId);
+        gathered.delete(select.value);
+        entry.itemId = select.value || null;
+        entry.overridden = true;
+        renderParts();
+        renderGuide();
+        $('guide').children[index].querySelector('select').focus();
+        announce(`${entry.label}のアイテムを変更し、必要数を更新しました。`, `Updated the item for ${entry.label} and recalculated quantities.`);
+        $('manual-copy').hidden = true;
+      });
+      label.append(select);
+      detail.append(label);
+    }
+    row.append(line, detail);
+    $('guide').append(row);
+  });
+  updateProgress();
+}
+function renderUnread() {
+  $('unread').hidden = !sheet.unread.length;
+  $('unread').replaceChildren();
+  if (!sheet.unread.length) return;
+  $('unread').append(el('strong', '', t('読み取れなかった部分があります。以下の内容は必要数に含めていません。', 'Some text could not be read. It is excluded from quantities.')));
+  for (const text of sheet.unread) $('unread').append(el('pre', '', text));
+  $('unread').append(el('p', '', t('「項目名 - [設定値]」の形式に直し、リストを再作成してください。', 'Use Category - [option], then rebuild the sheet.')));
+}
+function renderCatalog() {
+  $('catalog').replaceChildren();
+  for (const item of catalog) {
+    const row = el('tr');
+    const name = el('th', '', itemName(item));
+    name.scope = 'row';
+    if (language === 'en') name.append(el('span', 'sub-name', itemJa(item)));
+    row.append(name, el('td', '', item.labels.join(' / ')), el('td', '', t(notesJa[item.id] || '記載された項目に対応します。英語表記も別名として認識します。', item.note || 'Matches the listed categories. English labels are supported aliases.')));
+    $('catalog').append(row);
+  }
+}
+function renderLanguage() {
+  document.documentElement.lang = language;
+  document.title = t('Mod Sheet — カスタム準備ノート', 'Mod Sheet — FiveM parts planner');
+  $('language').value = language;
+  document.querySelectorAll('[data-ja]').forEach(node => { node.textContent = node.dataset[language]; });
+  $('status').textContent = t(...message);
+  renderParts();
+  renderGuide();
+  renderUnread();
+  renderCatalog();
+  if (!$('manual-copy').hidden) $('copy-text').value = exportText();
+}
+function build() {
+  builtText = $('source').value;
+  sheet = parse(builtText);
+  gathered.clear();
+  applied.clear();
+  $('results').hidden = !sheet.entries.length && !sheet.unread.length;
+  $('empty').hidden = !$('results').hidden;
+  $('stale').hidden = true;
+  $('copy').disabled = false;
+  $('manual-copy').hidden = true;
+  renderParts();
+  renderGuide();
+  renderUnread();
+  announce(builtText.trim() ? `${sheet.entries.length}項目を読み取りました。${sheet.unread.length ? '読み取れなかった部分を確認してください。' : ''}` : 'カスタム一覧を貼り付けてください。', builtText.trim() ? `Read ${sheet.entries.length} entries.${sheet.unread.length ? ' Review unread text below.' : ''}` : 'Paste your customization list to get started.');
+}
+function exportText() {
+  const lines = ['Mod Sheet', '', t('準備するアイテム（1項目につき1個）', 'Parts to prepare (one item per assigned customization)')];
+  for (const item of counts(sheet.entries)) lines.push(`${gathered.has(item.id) ? '[x]' : '[ ]'} ${item.quantity} × ${itemName(item)}`);
+  lines.push('', t('取り付け・設定リスト', 'Fitting guide'));
+  sheet.entries.forEach((entry, index) => {
+    const item = catalog.find(item => item.id === entry.itemId);
+    lines.push(`${applied.has(index) ? '[x]' : '[ ]'} ${entry.label} - [${entry.value}] → ${item ? itemName(item) : t('未指定（必要数に含めていません）', 'UNASSIGNED (excluded from quantities)')}`);
+    for (const warning of entry.warnings) lines.push(t('  要確認：' + warningsJa[warning], '  Review: ' + warning));
+  });
+  if (sheet.unread.length) lines.push('', t('読み取れなかった内容（必要数の対象外）', 'Unread text (excluded from quantities)'), ...sheet.unread);
+  return lines.join('\n');
+}
+$('language').addEventListener('change', () => { language = $('language').value; preference('language', language); renderLanguage(); });
+$('theme').addEventListener('click', () => { theme = theme === 'dark' ? 'light' : 'dark'; preference('theme', theme); renderTheme(); });
+$('build').addEventListener('click', build);
+$('sample').addEventListener('click', () => { $('source').value = sample; fitSource(); build(); });
+$('clear').addEventListener('click', () => { $('source').value = ''; fitSource(); build(); $('source').focus(); });
+$('source').addEventListener('input', () => { fitSource(); const stale = $('source').value !== builtText; $('stale').hidden = !stale; $('copy').disabled = stale; $('manual-copy').hidden = true; });
+$('copy').addEventListener('click', async () => {
+  const text = exportText();
+  try {
+    await navigator.clipboard.writeText(text);
+    announce('必要数と確認事項を含めてコピーしました。', 'Copied quantities, fitting steps, and review notes.');
+  } catch {
+    $('manual-copy').hidden = false;
+    $('copy-text').value = text;
+    $('copy-text').focus();
+    $('copy-text').select();
+    announce('下のコピー用テキストを選択してコピーしてください。', 'Select and copy the prepared text below.');
+  }
+});
+renderTheme();
+renderLanguage();
+fitSource();
+window.addEventListener('resize', fitSource);
+</script>
+</body></html>
